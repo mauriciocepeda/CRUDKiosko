@@ -1,0 +1,32 @@
+{% extends './base.html' %}
+
+{% block title %}
+Editar Producto
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container text-center">
+    <div class="card mt-5">
+        <div class="card-body">
+            <h1 class="fw-lighter">Kiosko El Gringo</h1>
+            <h2 class="fw-lighter card-title">Editar producto</h2>
+            <form action="/EditarProducto/" method="post" class="input-group mb-3">{% csrf_token %}
+                <input type="text" id="editarmarca" name="editarmarca" class="form-control my-1" value="{{producto.marca}}" readonly aria-describedby="button-addon2">
+                <input type="text" id="editarcategoria" name="editarcategoria" class="form-control my-1" value="{{producto.categoria}}" readonly aria-describedby="button-addon2">
+                <input type="number" id="editarprecio" name="editarprecio" class="form-control my-1" value="{{producto.precio}}" aria-describedby="button-addon2">
+                <button class="btn btn-outline-success my-1" type="submit" id="button-addon2">Actualizar Datos</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="row text-center">
+    <div class="col-12">
+        <a class=" btn btn-dark my-3" href="{% url 'inicio' %}">Volver al Inicio</a>
+    </div>
+</div>
+
+{% endblock %}

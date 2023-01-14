@@ -1,0 +1,31 @@
+{% extends './base.html' %}
+
+{% block title %}
+Agregar Nuevo Producto
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container text-center">
+    <div class="card mt-5">
+        <div class="card-body">
+            <h1 class="fw-lighter crad-title">Nuevo producto</h1>
+            <form action="/CrearProducto/" method="post" class="input-group mb-3">{% csrf_token %}
+                <input type="text" id="crearmarca" name="crearmarca" class="form-control my-1" placeholder="Marca" aria-label="Marca" aria-describedby="button-addon2" required>
+                <input type="text" id="crearcategoria" name="crearcategoria" class="form-control my-1" placeholder="Categoria" aria-label="Categoria" aria-describedby="button-addon2" required>
+                <input type="number" id="crearprecio" name="crearprecio" class="form-control my-1" placeholder="Precio" aria-label="Precio" aria-describedby="button-addon2" required>
+                <button class="btn btn-outline-success my-1" type="submit" id="button-addon2">Crear Producto</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="row text-center">
+    <div class="col-12">
+        <a class=" btn btn-dark my-3" href="{% url 'inicio' %}">Volver al Inicio</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends './base.html' %}
+
+{% block title %}
+Kiosko El Gringo
+{% endblock %}
+
+
+{% block body %}
+<div class="container text-center">
+    <h1 class="fw-lighter mt-5">Kiosko El Gringo</h1>
+    <div class="row text-center">
+        <div class="col-12">
+            <a  href="{% url 'nuevoprodu' %}" class="btn btn-dark my-3">Agregar Nuevo Producto <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+            </svg></a>
+        </div>
+
+    </div>
+    <div class="row mt-2">
+        <form action="/BuscarProducto/" method="post" class="input-group mb-3">{% csrf_token %}
+            <input type="text" id="filtro" name="filtro" class="form-control" placeholder="Filtrar Productos" aria-label="Filtrar Producto" aria-describedby="button-addon2">
+            <button class="btn btn-outline-success" type="submit" id="button-addon2">Buscar</button>
+        </form>
+        <div class="table-responsive">
+            <h2 class="fw-lighter mb-4">Lista de productos</h2>
+            <table class="table table-striped">
+                <tbody>
+                    <thead>
+                        <td><h3 class="fw-lighter fs-4">Marca</h3></td>
+                        <td><h3 class="fw-lighter fs-4">Descripcion</h3></td>
+                        <td><h3 class="fw-lighter fs-4">Precio</h3-fw-lighter></td>
+                    </thead>
+                    {% for producto in productos %}
+                    <tr>
+                        <td>{{producto.marca|upper}}</td>
+                        <td>{{producto.categoria|upper}}</td>
+                        <td>${{producto.precio}}</td>
+                        <td><a href="EdicionProducto/{{producto.marca}}/{{producto.categoria}}"class="btn btn-primary mx-2" id="editarProducto">Editar</a><a href="EliminarProducto/{{producto.marca}}/{{producto.categoria}}"class="btn btn-danger" id="borrarProducto">Borrar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </form>
+    </div>
+    <div class="row text-center">
+        <div class="col-12">
+            <a class=" btn btn-dark my-3" href="{% url 'inicio' %}">Volver al Inicio</a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
